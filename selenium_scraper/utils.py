@@ -1,7 +1,5 @@
 from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.common.by import By
 
 
 class WebDriverManager:
@@ -16,9 +14,7 @@ class WebDriverManager:
             chrome_options.add_argument("--no-sandbox")
             chrome_options.add_argument("--disable-dev-shm-usage")
 
-        self.driver = webdriver.Chrome(
-            service=Service("chromedriver"), options=chrome_options
-        )
+        self.driver = webdriver.Chrome(options=chrome_options)
         return self
 
     def __exit__(self, exc_type, exc_val, exc_tb):
