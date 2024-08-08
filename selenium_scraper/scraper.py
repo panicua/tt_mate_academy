@@ -71,7 +71,7 @@ class CourseScraper:
     def build_course_list(
             self, course_elements: list[WebElement]
     ) -> list[dict]:
-        """Form list of course info (name, description, type, url)."""
+        """Form list of course info (name, description, course_type, url)."""
         courses = []
         for course_element in course_elements:
             name, description, flex_elements, full_time_elements = (
@@ -84,7 +84,7 @@ class CourseScraper:
                         {
                             "name": name,
                             "description": description,
-                            "type": CourseType.FLEX,
+                            "course_type": CourseType.FLEX,
                             "url": flex_url,
                         }
                     )
@@ -94,7 +94,7 @@ class CourseScraper:
                         {
                             "name": name,
                             "description": description,
-                            "type": CourseType.FULL_TIME,
+                            "course_type": CourseType.FULL_TIME,
                             "url": full_time_url,
                         }
                     )
@@ -103,7 +103,7 @@ class CourseScraper:
     def get_courses(self) -> list[dict]:
         """
         Get complete list of dictionaries with course info
-        (name, description, type, url).
+        (name, description, course_type, url).
         """
         course_elements = self.get_course_elements()
         return self.build_course_list(course_elements)
