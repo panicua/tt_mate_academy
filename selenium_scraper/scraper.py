@@ -17,7 +17,7 @@ from selenium_scraper.constants import (
     COURSE_DURATION_XPATH,
 )
 from selenium_scraper.dto import CourseDTO, CourseType
-from selenium_scraper.utils import write_to_json
+from selenium_scraper.utils import write_courses_to_json
 
 logging.basicConfig(
     level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
@@ -97,8 +97,12 @@ class CourseScraper:
             modules_num = self.driver.find_element(
                 By.XPATH, COURSE_MODULES_XPATH
             ).text
-            topics_num = self.driver.find_element(By.XPATH, COURSE_TOPICS_XPATH).text
-            course_duration = self.driver.find_element(By.XPATH, COURSE_DURATION_XPATH).text
+            topics_num = self.driver.find_element(
+                By.XPATH, COURSE_TOPICS_XPATH
+            ).text
+            course_duration = self.driver.find_element(
+                By.XPATH, COURSE_DURATION_XPATH
+            ).text
 
             return {
                 "modules_num": modules_num,
@@ -136,7 +140,9 @@ class CourseScraper:
         try:
             courses = self.get_courses()
             detailed_courses = self.create_courses(courses)
-            write_to_json(filename=OUTPUT_FILENAME, courses=detailed_courses)
+            write_courses_to_json(
+                filename=OUTPUT_FILENAME, courses=detailed_courses
+            )
             logging.info(
                 f"Scraping completed. {len(detailed_courses)} courses found"
             )
