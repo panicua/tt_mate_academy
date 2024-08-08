@@ -8,32 +8,16 @@ from selenium.webdriver.chrome.options import Options
 from selenium_scraper.dto import CourseDTO
 
 
-class WebDriverManager:
-    def __init__(self, headless: bool = True):
-        self.headless = headless
-        self.driver = None
-
-    def __enter__(self):
-        chrome_options = Options()
-        if self.headless:
-            chrome_options.add_argument("--headless")
-            chrome_options.add_argument("--no-sandbox")
-            chrome_options.add_argument("--disable-dev-shm-usage")
-
-        self.driver = webdriver.Chrome(options=chrome_options)
-        return self
-
-    def __exit__(self, exc_type, exc_val, exc_tb):
-        if self.driver:
-            self.driver.quit()
-
-
 def courses_to_dict(courses: List[CourseDTO]) -> List[dict]:
     return [
         {
             "course_name": course.name,
             "course_description": course.description,
             "course_type": course.type.value,
+            "modules_num": course.modules_num,
+            # "topics_num": course.topics_num,
+            # "course_duration": course.course_duration,
+            "detailed_page_url": course.detailed_page_url,
         }
         for course in courses
     ]
