@@ -11,7 +11,7 @@ class CourseType(Enum):
 class CourseDTO:
     name: str
     description: str
-    type: CourseType
+    course_type: CourseType
     modules_num: str
     topics_num: int
     course_duration: str
