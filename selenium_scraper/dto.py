@@ -12,6 +12,7 @@ class CourseDTO:
     name: str
     description: str
     type: CourseType
-    # modules_num: int
-    # topics_num: int
-    # course_duration: str
+    modules_num: str
+    topics_num: int
+    course_duration: str
+    detailed_page_url: str

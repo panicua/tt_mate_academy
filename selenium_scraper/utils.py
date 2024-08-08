@@ -2,9 +2,6 @@ import json
 import logging
 from typing import List
 
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
-
 from selenium_scraper.dto import CourseDTO
 
 
@@ -15,8 +12,8 @@ def courses_to_dict(courses: List[CourseDTO]) -> List[dict]:
             "course_description": course.description,
             "course_type": course.type.value,
             "modules_num": course.modules_num,
-            # "topics_num": course.topics_num,
-            # "course_duration": course.course_duration,
+            "topics_num": course.topics_num,
+            "course_duration": course.course_duration,
             "detailed_page_url": course.detailed_page_url,
         }
         for course in courses
