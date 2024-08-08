@@ -13,8 +13,7 @@ def courses_to_dict(courses: List[CourseDTO]) -> List[dict]:
             "course_type": course.type.value,
             "modules_num": course.modules_num,
             "topics_num": course.topics_num,
-            "course_duration": course.course_duration,
-            "detailed_page_url": course.detailed_page_url,
+            "course_duration": course.course_duration
         }
         for course in courses
     ]
